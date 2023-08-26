@@ -99,6 +99,10 @@ sp_api::decl_runtime_apis! {
 		fn author() -> H160;
 		/// For a given account address and index, returns pallet_evm::AccountStorages.
 		fn storage_at(address: H160, index: U256) -> H256;
+		/// For a given account address, start key and limit, returns pallet_evm::AccountStorages.
+		/// And optionally next key if can't finish iterating
+		fn storage_range_at(address: H160, start_key: H256, limit: u64) -> (Vec<(H256, H256)>, Option<H256>);
+
 		/// Returns a frame_ethereum::call response. If `estimate` is true,
 		#[changed_in(2)]
 		fn call(
